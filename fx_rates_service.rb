@@ -9,7 +9,7 @@ get "/fxrate" do
     @to_cur = params['to_cur']
     unless @from_cur.nil? || @to_cur.nil?
       fx_rate = ExchangeRate.at(@date, @from_cur, @to_cur)
-      @conversion_result = "#{@from_cur} to #{@to_cur} at #{fx_rate.round(5)} = #{@from_cur} #{(@amount.to_f * fx_rate).round(3)}"
+      @conversion_result = "#{@from_cur} to #{@to_cur} @ #{fx_rate.round(5)} = #{@from_cur} #{(@amount.to_f * fx_rate).round(3)}"
     end
   rescue ArgumentError => e
     @error_msg = e.message
